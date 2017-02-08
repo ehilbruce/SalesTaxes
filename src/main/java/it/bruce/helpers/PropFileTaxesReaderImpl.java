@@ -9,7 +9,6 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
-import base.BaseTest;
 import it.bruce.interfaces.TaxesRatesCalulator.Type;
 import it.bruce.interfaces.TaxesReader;
 
