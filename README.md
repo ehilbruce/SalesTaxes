@@ -1,3 +1,10 @@
+Very fast implementation af the following problem solution. 
+Clearly over-engineered adn probably under tested. 
+Tried to make the solution flexible to future expandig. 
+For example letting program get taxes info from different sources (DB, prop file....) or print output receipt in any different way developer will like.
+There's a small test suite to launch and, if you want to print out receipt just run Main.java class. It will print on standard output.
+
+
 
 PROBLEM: SALES TAXES
 
