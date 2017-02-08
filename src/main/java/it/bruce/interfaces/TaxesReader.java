@@ -10,6 +10,6 @@ import java.util.Map;
  */
 public interface TaxesReader {
 	
-	Map<TaxesRatesCalulator.Type, Float> importTaxesRates();
+	Map<TaxesRatesCalulator.Type, Float> importTaxesRates(String sourcePath);
 
 }

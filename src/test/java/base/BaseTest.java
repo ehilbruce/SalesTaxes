@@ -1,39 +1,50 @@
 package base;
 
-import java.util.Properties;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.apache.log4j.PropertyConfigurator;
+import org.apache.log4j.Logger;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mockito.Mockito;
 
+import it.bruce.helpers.PropFileTaxesReaderImpl;
+import it.bruce.interfaces.TaxesRatesCalulator;
+import it.bruce.interfaces.TaxesReader;
+import it.bruce.interfaces.TaxesRatesCalulator.Type;
 import junit.framework.TestCase;
 
 public class BaseTest extends TestCase {
 	
-	
-private static boolean logIsInitialized = false;
-	
-	protected void setUp() throws Exception {
-		System.out.println("BRUCEEEEEEEEEEEEEEEE");
-//		if (!logIsInitialized) {
-//			System.setProperty("log4j.defaultInitOverride", "true");
-//			Properties props = new Properties();
-////			props.setProperty("log4j.debug", "true");
-//			props.setProperty("log4j.appender.A1", "org.apache.log4j.ConsoleAppender");
-//			props.setProperty("log4j.rootLogger", "WARN, A1");
-//			props.setProperty("log4j.appender.A1.layout", "org.apache.log4j.PatternLayout");
-//			// livello(DEBUG,...) thread(...) NDC(utente) classe java(ultimi 40 char) messaggio newline
-//			props.setProperty("log4j.appender.A1.layout.ConversionPattern", "%-5p [%t] %x %40c %m%n");	
-//	
-//			PropertyConfigurator.configure(props);
-//			logIsInitialized = true;
-//			
-//		}
-	}
-	
 
-	@Test
-	public void testTest() {
+	final static Logger logger = Logger.getLogger(BaseTest.class);
+
+	
+	TaxesReader reader;
+	protected Map<TaxesRatesCalulator.Type, Float> specialRatesMap;
+	protected TaxesRatesCalulator printerService;
+	
+	@BeforeClass
+	protected void setUp() throws Exception {
 		
-		assertTrue(true);
+		 logger.debug("Setting up basic objects");
+		 specialRatesMap = new HashMap<TaxesRatesCalulator.Type, Float>();
+		 specialRatesMap.put(Type.BOOK, 0f);
+		 specialRatesMap.put(Type.MEDICAL, 0f);
+		 specialRatesMap.put(Type.FOOD, 0f);
+		 specialRatesMap.put(Type.ORDINARY, 0.1f);
+	       		
+		 reader =Mockito.mock(TaxesReader.class);
+		 Mockito.when(reader.importTaxesRates("test")).thenReturn(specialRatesMap);
+	
+		 printerService = Mockito.mock(TaxesRatesCalulator.class);
 	}
+	
+	
+	@Test
+	public void test() {
+		logger.debug("just warming up");
+	}
+
+
 }
